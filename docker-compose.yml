@@ -17,13 +17,13 @@ services:
       - Ho
   mysql:
     image: mysql:latest
+    cap_add:
+      - SYS_NICE
     container_name: mysql
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=1122
       - MYSQL_DATABASE=mydb
-      - MYSQL_USER=biighunter
-      - MYSQL_PASSWORD=1122
     ports:
       - "3306:3306"
     expose:
