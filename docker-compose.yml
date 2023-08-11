@@ -13,7 +13,8 @@ services:
       - ":443"
     volumes:
       - pg_data:/var/lib/postgresql/data
-
+    networks:
+      - Ho
 volumes:
   pg_data:
 networks:
