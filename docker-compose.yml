@@ -9,12 +9,8 @@ services:
       - POSTGRES_DB=postgresdb
       - POSTGRES_USER=biighunter
       - POSTGRES_PASSWORD=11236939
-      - POSTGRES_PORT=5432
-      - POSTGRES_HOST_AUTH_METHOD=trust
-      - POSTGRES_TRUST_LOCAL_NET=https://postgres.shomamamama.com
     ports:
-      - ":5432"
-      - ":443"
+      - "5432:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data
     networks:
