@@ -20,7 +20,7 @@ services:
     container_name: mysql
     restart: always
     environment:
-      #- MYSQL_ROOT_PASSWORD=1122
+      - MYSQL_ROOT_PASSWORD=1122
       - MYSQL_DATABASE=mydb
       - MYSQL_USER=biighunter
       - MYSQL_PASSWORD=1122
