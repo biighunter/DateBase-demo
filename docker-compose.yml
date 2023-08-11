@@ -20,7 +20,7 @@ services:
     image: mysql:latest
     container_name: mysql-container
     environment:
-      - MYSQL_ROOT_PASSWORD=1122
+      #- MYSQL_ROOT_PASSWORD=1122
       - MYSQL_DATABASE=mydb
       - MYSQL_USER=biighunter
       - MYSQL_PASSWORD=1122
