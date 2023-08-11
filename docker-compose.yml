@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_DB: postgresdb
+      POSTGRES_USER: biighunter
+      POSTGRES_PASSWORD: 11236939
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:
+networks:
+  Ho:
+    external: true
