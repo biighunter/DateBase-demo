@@ -1,40 +1,38 @@
 version: '3'
 
 services:
-  postgres:
-    image: postgres:15
-    container_name: postgres
-    restart: always
-    environment:
-      - POSTGRES_DB=postgresdb
-      - POSTGRES_USER=biighunter
-      - POSTGRES_PASSWORD=1122
-    ports:
-      - "5432:5432"
-    volumes:
-      - pg_data:/var/lib/postgresql/data
-    networks:
-      - Ho
-  # mysql:
-  #   image: mysql:latest
-  #   container_name: mysql
+  # postgres:
+  #   image: postgres:15
+  #   container_name: postgres
   #   restart: always
   #   environment:
-  #     - MYSQL_ROOT_PASSWORD=1122
-  #     - MYSQL_DATABASE=mydb
-  #     - MYSQL_USER=biighunter
-  #     - MYSQL_PASSWORD=1122
+  #     - POSTGRES_DB=postgresdb
+  #     - POSTGRES_USER=biighunter
+  #     - POSTGRES_PASSWORD=1122
   #   ports:
-  #     - "3306:3306"
-  #   expose:
-  #     - "3306"
+  #     - "5432:5432"
   #   volumes:
-  #     - mysql-data:/var/lib/mysql
+  #     - pg_data:/var/lib/postgresql/data
   #   networks:
   #     - Ho
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=1122
+      - MYSQL_DATABASE=mydb
+      - MYSQL_USER=biighunter
+      - MYSQL_PASSWORD=1122
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - Ho
 volumes:
   pg_data:
-  # mysql-data:
+  mysql-data:
 networks:
   Ho:
     external: true
