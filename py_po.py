@@ -1,6 +1,7 @@
 import subprocess
 import psycopg2
 from psycopg2 import OperationalError
+import datetime
 
 db_config = {
     'dbname': 'hunt',
@@ -12,7 +13,8 @@ db_config = {
 
 backup_path = "/root/DateBase-demo/backup/"
 # Construct the backup filename
-backup_filename = f'{db_config["dbname"]}_backup.sql'
+current_date = datetime.date.today()
+backup_filename = f'{current_date}_backup.sql'
 
 def backup_database():
     try:
