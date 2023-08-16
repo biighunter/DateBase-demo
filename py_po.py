@@ -31,6 +31,7 @@ def create_backup():
             f"--port={db_params['port']}",
             f"--username={db_params['user']}",
             f"--dbname={db_params['database']}",
+            f"--password={db_params['password']}",
             f"--file={backup_path}"
         ]
 
