@@ -23,7 +23,7 @@ def backup_database():
 
         # Construct the pg_dump command
         pg_dump_command = [
-            'pg_dump',
+            '/usr/bin/pg_dump',
             f'--dbname=postgresql://{db_config["user"]}:{db_config["password"]}@{db_config["host"]}:{db_config["port"]}/{db_config["dbname"]}',
             f'--file={backup_path}/{backup_filename}',
         ]
