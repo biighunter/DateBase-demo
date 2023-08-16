@@ -15,26 +15,26 @@ services:
       - pg_data:/var/lib/postgresql/data
     networks:
       - Ho
-  mysql:
-    image: mysql:latest
-    container_name: mysql
-    restart: always
-    environment:
-      - MYSQL_ROOT_PASSWORD=1122
-      - MYSQL_DATABASE=mydb
-      - MYSQL_USER=biighunter
-      - MYSQL_PASSWORD=1122
-    ports:
-      - "3306:3306"
-    expose:
-      - "3306"
-    volumes:
-      - mysql-data:/var/lib/mysql
-    networks:
-      - Ho
+  # mysql:
+  #   image: mysql:latest
+  #   container_name: mysql
+  #   restart: always
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=1122
+  #     - MYSQL_DATABASE=mydb
+  #     - MYSQL_USER=biighunter
+  #     - MYSQL_PASSWORD=1122
+  #   ports:
+  #     - "3306:3306"
+  #   expose:
+  #     - "3306"
+  #   volumes:
+  #     - mysql-data:/var/lib/mysql
+  #   networks:
+  #     - Ho
 volumes:
   pg_data:
-  mysql-data:
+  # mysql-data:
 networks:
   Ho:
     external: true
