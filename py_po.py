@@ -1,19 +1,50 @@
-import os
-import time
+import subprocess
+import datetime
+import psycopg2
 
-# Database details
-DB_HOST = '146.190.26.15'
-DB_USER = 'biighunter'
-DB_PASS = '1122'
-DB_NAME = 'postgresdb'
+# Database connection parameters
+db_params = {
+    "host": "146.190.26.15",
+    "port": "5432",
+    "database": "postgresdb",
+    "user": "biighunter",
+    "password": "1122"
+}
 
-# Backup details
-BACKUP_PATH = '/root/DateBase-demo/backup/'
-TIMESTAMP = time.strftime('%Y-%m-%d-%H-%M-%S')
-BACKUP_FILE = DB_NAME + '_' + TIMESTAMP + '.sql'
+# Backup settings
+backup_dir = "/path/to/backup/directory"
+backup_filename = f"backup_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.sql"
 
-# Command to take a backup
-BACKUP_CMD = "pg_dump -h {0} -U {1} -d {2} > {3}".format(DB_HOST, DB_USER, DB_NAME, os.path.join(BACKUP_PATH, BACKUP_FILE))
+# Create a backup
+def create_backup():
+    try:
+        # Connect to the database
+        conn = psycopg2.connect(**db_params)
+        conn.autocommit = True
+        cursor = conn.cursor()
 
-# Execute the backup command
-os.system(BACKUP_CMD)
+        # Run pg_dump command to create a backup
+        backup_path = f"{backup_dir}/{backup_filename}"
+        dump_command = [
+            "pg_dump",
+            f"--host={db_params['host']}",
+            f"--port={db_params['port']}",
+            f"--username={db_params['user']}",
+            f"--dbname={db_params['database']}",
+            f"--file={backup_path}"
+        ]
+
+        subprocess.run(dump_command, check=True)
+
+        print("Backup created successfully:", backup_path)
+
+    except Exception as e:
+        print("Error creating backup:", e)
+
+    finally:
+        if conn:
+            cursor.close()
+            conn.close()
+
+if __name__ == "__main__":
+    create_backup()
