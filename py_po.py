@@ -25,8 +25,9 @@ def create_backup():
 
         # Run pg_dump command to create a backup
         backup_path = f"{backup_dir}/{backup_filename}"
+        pg_dump_path = "/usr/bin/pg_dump"
         dump_command = [
-            "pg_dump",
+            pg_dump_path,
             f"--host={db_params['host']}",
             f"--port={db_params['port']}",
             f"--username={db_params['user']}",
