@@ -27,10 +27,10 @@ def create_backup():
         backup_path = f"{backup_dir}/{backup_filename}"
         dump_command = [
             "pg_dump",
-            f"--host={db_params["host"]}",
-            f"--port={db_params["port"]}",
-            f"--username={db_params["user"]}",
-            f"--dbname={db_params["database"]}",
+            f"--host={db_params['host']}",
+            f"--port={db_params['port']}",
+            f"--username={db_params['user']}",
+            f"--dbname={db_params['database']}",
             f"--file={backup_path}"
         ]
 
