@@ -13,7 +13,7 @@ db_params = {
 
 # Backup settings
 backup_dir = "/path/to/backup/directory"
-backup_filename = f"backup_{datetime.datetime.now().strftime("%Y%m%d%H%M%S")}.sql"
+backup_filename = f"backup_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.sql"
 
 # Create a backup
 def create_backup():
