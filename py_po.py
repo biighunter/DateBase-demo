@@ -1,46 +1,42 @@
 import subprocess
 import datetime
 import psycopg2
-import schedule
-import time
 
 # Database connection parameters
 db_params = {
-    'host': '146.190.26.15',
-    'port': '5432',
-    'database': 'postgresdb',
-    'user': 'biighunter',
-    'password': '1122'
+    "host": "146.190.26.15",
+    "port": "5432",
+    "database": "postgresdb",
+    "user": "biighunter",
+    "password": "1122"
 }
 
 # Backup settings
-backup_dir = '/root/DateBase-demo/backup/'
+backup_dir = "/root/DateBase-demo/backup/"
+backup_filename = f"backup_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.sql"
 
 # Create a backup
 def create_backup():
     try:
-        # Generate backup filename with timestamp
-        backup_filename = f"backup_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}.sql"
-
         # Connect to the database
         conn = psycopg2.connect(**db_params)
         conn.autocommit = True
         cursor = conn.cursor()
 
-        # Generate backup command
-        backup_command = [
-            'pg_dump',
+        # Run pg_dump command to create a backup
+        backup_path = f"{backup_dir}/{backup_filename}"
+        dump_command = [
+            "pg_dump",
             f"--host={db_params['host']}",
             f"--port={db_params['port']}",
             f"--username={db_params['user']}",
             f"--dbname={db_params['database']}",
-            f"--file={backup_dir}/{backup_filename}"
+            f"--file={backup_path}"
         ]
 
-        # Execute the pg_dump command
-        subprocess.run(backup_command, check=True)
+        subprocess.run(dump_command, check=True)
 
-        print("Backup created successfully:", backup_filename)
+        print("Backup created successfully:", backup_path)
 
     except Exception as e:
         print("Error creating backup:", e)
@@ -50,9 +46,5 @@ def create_backup():
             cursor.close()
             conn.close()
 
-# Schedule the backup to run daily at 6:00 PM
-schedule.every().day.at("18:00").do(create_backup)
-
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+if __name__ == "__main__":
+    create_backup()
