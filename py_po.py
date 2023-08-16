@@ -3,7 +3,7 @@ import psycopg2
 from psycopg2 import OperationalError
 
 db_config = {
-    'dbname': 'postgresdb',
+    'dbname': 'hunt',
     'user': 'biighunter',
     'password': '1122',
     'host': '146.190.26.15',
