@@ -12,6 +12,7 @@ services:
     ports:
       - ":5432"
     volumes:
+      - ho-certbot:/etc/letsencrypt
       - pg_data:/var/lib/postgresql/data
     networks:
       - Ho
