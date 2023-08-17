@@ -35,6 +35,8 @@ services:
 volumes:
   pg_data:
   mysql-data:
+  ho-certbot:
+    external: true
 networks:
   Ho:
     external: true
