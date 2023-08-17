@@ -14,7 +14,7 @@ services:
     networks:
       - Ho
     volumes:
-      - ho-certbot:/etc/letsencrypt
+      - server_ho-certbot:/etc/letsencrypt
       - pg_data:/var/lib/postgresql/data
     
   # mysql:
