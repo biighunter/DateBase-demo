@@ -35,6 +35,7 @@ services:
 
 
 volumes:
+  pg_slave_data:
   pg_data:
   mysql-data:
   server_ho-certbot:
