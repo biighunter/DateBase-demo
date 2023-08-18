@@ -27,7 +27,7 @@ services:
       - POSTGRES_PASSWORD=1122
       - POSTGRES_PRIMARY_USER=biighunter
       - POSTGRES_PRIMARY_PASSWORD=1122
-      - POSTGRES_PRIMARY_HOST=postgres-master
+      - POSTGRES_PRIMARY_HOST=postgres
     volumes:
       - pg_slave_data:/var/lib/postgresql/data
     networks:
