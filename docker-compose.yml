@@ -17,6 +17,23 @@ services:
       - pg_data:/var/lib/postgresql/data
     networks:
       - Ho
+  postgres-slave:
+    image: postgres:latest
+    container_name: postgres-slave
+    restart: always
+    environment:
+      - POSTGRES_DB=postgresdb
+      - POSTGRES_USER=biighunter
+      - POSTGRES_PASSWORD=1122
+      - POSTGRES_PRIMARY_USER=biighunter
+      - POSTGRES_PRIMARY_PASSWORD=1122
+      - POSTGRES_PRIMARY_HOST=postgres-master
+    volumes:
+      - pg_slave_data:/var/lib/postgresql/data
+    networks:
+      - Ho
+
+
 volumes:
   pg_data:
   mysql-data:
