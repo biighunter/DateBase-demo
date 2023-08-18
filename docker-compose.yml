@@ -11,12 +11,13 @@ services:
       - POSTGRES_PASSWORD=1122
     ports:
       - ":5432"
-    networks:
-      - Ho
+      - ":443"
     volumes:
       - server_ho-certbot:/etc/letsencrypt
       - pg_data:/var/lib/postgresql/data
-    
+    networks:
+      - Ho
+      
   # mysql:
   #   image: mysql:latest
   #   container_name: mysql
