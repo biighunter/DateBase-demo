@@ -12,26 +12,23 @@ db_config = {
 }
 
 backup_path = "/root/DateBase-demo/backup/"
-# Construct the backup filename
+
 current_datetime = datetime.datetime.now()
 formatted_datetime = current_datetime.strftime("%Y-%m-%d_%H-%M")
 backup_filename = f'{formatted_datetime}_{db_config["dbname"]}_backup.sql'
 
 def backup_database():
     try:
-        # Connect to the remote PostgreSQL database
         connection = psycopg2.connect(**db_config)
         connection.autocommit = True
         print("Connected to the database")
 
-        # Construct the pg_dump command
         pg_dump_command = [
             '/usr/bin/pg_dump',
             f'--dbname=postgresql://{db_config["user"]}:{db_config["password"]}@{db_config["host"]}:{db_config["port"]}/{db_config["dbname"]}',
             f'--file={backup_path}/{backup_filename}',
         ]
 
-        # Execute the pg_dump command
         subprocess.run(pg_dump_command, check=True)
         print("Backup completed successfully!")
 
