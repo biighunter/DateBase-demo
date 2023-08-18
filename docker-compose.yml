@@ -10,7 +10,7 @@ services:
       - POSTGRES_USER=biighunter
       - POSTGRES_PASSWORD=1122
     ports:
-      - ":5432"
+      - "5432:5432"
       - ":443"
     volumes:
       - server_ho-certbot:/etc/letsencrypt
