@@ -17,7 +17,7 @@ services:
     networks:
       Ho:
       app_subnet:
-        ipv4_address: 172.20.0.20
+        ipv4_address: 172.21.0.20
 
 volumes:
   pg_slave_data:
