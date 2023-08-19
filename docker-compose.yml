@@ -3,7 +3,7 @@ version: '3'
 services:
   postgres:
     image: postgres:latest
-    container_name: postgres
+    container_name: postgres_container
     restart: always
     environment:
       - POSTGRES_DB=postgresdb
@@ -11,28 +11,11 @@ services:
       - POSTGRES_PASSWORD=1122
     ports:
       - ":5432"
-      - ":443"
     volumes:
       - server_ho-certbot:/etc/letsencrypt
       - pg_data:/var/lib/postgresql/data
     networks:
       - Ho
-  postgres-slave:
-    image: postgres:latest
-    container_name: postgres-slave
-    restart: always
-    environment:
-      - POSTGRES_DB=postgresdb
-      - POSTGRES_USER=biighunter
-      - POSTGRES_PASSWORD=1122
-      - POSTGRES_PRIMARY_USER=biighunter
-      - POSTGRES_PRIMARY_PASSWORD=1122
-      - POSTGRES_PRIMARY_HOST=postgres
-    volumes:
-      - pg_slave_data:/var/lib/postgresql/data
-    networks:
-      - Ho
-
 
 volumes:
   pg_slave_data:
@@ -44,6 +27,23 @@ networks:
   Ho:
     external: true
 
+
+  # web-server:    
+  #   image: nginx:latest
+  #   container_name: web_container
+  #   environment:
+  #     - POSTGRES_DB=postgresdb
+  #     - POSTGRES_USER=biighunter
+  #     - POSTGRES_PASSWORD=1122
+  #     - POSTGRES_HOST="http://postgres:5432"
+  #   expose:
+  #     - 80
+  #     - 443
+  #   networks:
+  #     - Ho
+
+
+#---------------------
   # mysql:
   #   image: mysql:latest
   #   container_name: mysql
