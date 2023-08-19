@@ -15,7 +15,9 @@ services:
       - server_ho-certbot:/etc/letsencrypt
       - pg_data:/var/lib/postgresql/data
     networks:
-      - Ho
+      Ho:
+      app_subnet:
+        ipv4_address: 172.20.0.20
 
 volumes:
   pg_slave_data:
@@ -24,6 +26,8 @@ volumes:
   server_ho-certbot:
     external: true
 networks:
+  app_subnet:
+    external: true
   Ho:
     external: true
 
