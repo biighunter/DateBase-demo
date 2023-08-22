@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  postgres:
+  postgres-0:
     image: postgres:latest
-    container_name: postgres_container
+    container_name: postgres_replica_0
     restart: always
     environment:
       - POSTGRES_DB=postgresdb
@@ -12,17 +12,49 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - server_ho-certbot:/etc/letsencrypt
-      - pg_data:/var/lib/postgresql/data
+      - pg_data_0:/var/lib/postgresql/data
+      - ./Cluster/postgres-0/postgresql.conf
+      - ./Cluster/pg_hba.conf
     networks:
-      Ho:
+      - Ho
 
+  postgres-1:
+    image: postgres:latest
+    container_name: postgres_replica_1
+    restart: always
+    environment:
+      - POSTGRES_DB=postgresdb
+      - POSTGRES_USER=biighunter
+      - POSTGRES_PASSWORD=1122
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg_data_1:/var/lib/postgresql/data
+      - ./Cluster/postgres-1/postgresql.conf
+      - ./Cluster/pg_hba.conf
+    networks:
+      - Ho
+  postgres-2:
+    image: postgres:latest
+    container_name: postgres_replica_2
+    restart: always
+    environment:
+      - POSTGRES_DB=postgresdb
+      - POSTGRES_USER=biighunter
+      - POSTGRES_PASSWORD=1122
+    ports:
+      - "5434:5432"
+    volumes:
+      - pg_data_2:/var/lib/postgresql/data
+      - ./Cluster/postgres-2/postgresql.conf
+      - ./Cluster/pg_hba.conf
+    networks:
+      - Ho
 volumes:
-  pg_slave_data:
-  pg_data:
-  mysql-data:
-  server_ho-certbot:
-    external: true
+  pg_data_0:
+  pg_data_1:
+  pg_data_2:
+
 networks:
   Ho:
     external: true
