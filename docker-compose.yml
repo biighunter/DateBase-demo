@@ -13,7 +13,7 @@ services:
       - "5432:5432"
     volumes:
       - pg_0_data:/var/lib/postgresql/data
-      - ./Cluster/hba/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
+      - ./Cluster/hba:/var/lib/postgresql/data
     networks:
       Ho:
 
@@ -29,7 +29,7 @@ services:
       - "5433:5432"
     volumes:
       - pg_1_data:/var/lib/postgresql/data
-      - ./Cluster/hba/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
+      # - ./Cluster/hba/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
     networks:
       Ho:
 
@@ -45,7 +45,7 @@ services:
       - "5434:5432"
     volumes:
       - pg_2_data:/var/lib/postgresql/data
-      - ./Cluster/hba/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
+      - ./Cluster/hba/:/var/lib/postgresql/data/
     networks:
       Ho:
 
