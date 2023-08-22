@@ -14,7 +14,6 @@ services:
     volumes:
       - pg_0_data:/var/lib/postgresql/data
       - ./Cluster/postgres-0:/etc/postgresql
-      # - ./Cluster/postgres-0/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
     networks:
       Ho:
     command: ["-c", "config_file=/etc/postgresql/postgresql.conf"]
