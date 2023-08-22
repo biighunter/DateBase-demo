@@ -33,7 +33,9 @@ services:
       - ./Cluster/postgres-1:/etc/postgresql
     networks:
       Ho:
-    command: ["-c", "config_file=/etc/postgresql/postgresql.conf"]
+    command: ["-c", "config_file=/etc/postgresql/postgresql.conf", "-c", "hba_file=/etc/postgresql/pg_hba.conf", "-c", "recovery_file=/etc/postgresql/recovery.conf"]
+    entrypoint: >
+      /bin/bash -c "touch /var/lib/postgresql/data/standby.signal && /docker-entrypoint.sh postgres"
 
   postgres-2:
     image: postgres:latest
