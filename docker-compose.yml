@@ -14,7 +14,6 @@ services:
     volumes:
       - pg_0_data:/var/lib/postgresql/data
       - ./Cluster/postgres-0:/etc/postgresql
-      - ./Cluster/hba:/etc/postgresql
     networks:
       Ho:
 
@@ -31,7 +30,6 @@ services:
     volumes:
       - pg_1_data:/var/lib/postgresql/data
       - ./Cluster/postgres-1:/etc/postgresql
-      - ./Cluster/hba:/etc/postgresql
     networks:
       Ho:
 
@@ -48,7 +46,6 @@ services:
     volumes:
       - pg_2_data:/var/lib/postgresql/data
       - ./Cluster/postgres-2:/etc/postgresql
-      - ./Cluster/hba:/etc/postgresql
     networks:
       Ho:
 
