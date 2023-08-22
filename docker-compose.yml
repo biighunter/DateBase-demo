@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  postgres:
+  postgres-0:
     image: postgres:latest
     container_name: postgres_container
     restart: always
@@ -12,12 +12,44 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      - pg_0_data:/var/lib/postgresql/data
+    networks:
+      Ho:
+
+  postgres-1:
+    image: postgres:latest
+    container_name: postgres_container
+    restart: always
+    environment:
+      - POSTGRES_DB=postgresdb
+      - POSTGRES_USER=biighunter
+      - POSTGRES_PASSWORD=1122
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg_1_data:/var/lib/postgresql/data
+    networks:
+      Ho:
+
+  postgres-2:
+    image: postgres:latest
+    container_name: postgres_container
+    restart: always
+    environment:
+      - POSTGRES_DB=postgresdb
+      - POSTGRES_USER=biighunter
+      - POSTGRES_PASSWORD=1122
+    ports:
+      - "5434:5432"
+    volumes:
+      - pg_2_data:/var/lib/postgresql/data
     networks:
       Ho:
 
 volumes:
-  pg_data:
+  pg_0_data:
+  pg_1_data:
+  pg_2_data:
 
 networks:
   Ho:
