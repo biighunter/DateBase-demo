@@ -55,9 +55,7 @@ services:
     networks:
       Ho:
     command: ["-c", "config_file=/etc/postgresql/postgresql.conf", "-c", "hba_file=/etc/postgresql/pg_hba.conf"]
-    entrypoint: >
-      /bin/bash -c "touch /var/lib/postgresql/data/standby.signal && /docker-entrypoint.sh postgres"
-
+    
 volumes:
   pg_0_data:
   pg_1_data:
