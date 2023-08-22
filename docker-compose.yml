@@ -13,7 +13,7 @@ services:
       - "5432:5432"
     volumes:
       - pg_0_data:/var/lib/postgresql/data
-      - ./pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
+      # - ./pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
     networks:
       Ho:
 
