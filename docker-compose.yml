@@ -1,9 +1,9 @@
 version: '3'
 
 services:
-  postgres-0:
+  postgres:
     image: postgres:latest
-    container_name: postgres_replica_0
+    container_name: postgres_container
     restart: always
     environment:
       - POSTGRES_DB=postgresdb
@@ -12,48 +12,13 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - pg_data_0:/var/lib/postgresql/data
-      - ./Cluster/postgres-0:/var/lib/postgresql/data
-      - ./Cluster/hba:/var/lib/postgresql/data
+      - server_ho-certbot:/etc/letsencrypt
+      - pg_data:/var/lib/postgresql/data
     networks:
-      - Ho
+      Ho:
 
-  postgres-1:
-    image: postgres:latest
-    container_name: postgres_replica_1
-    restart: always
-    environment:
-      - POSTGRES_DB=postgresdb
-      - POSTGRES_USER=biighunter
-      - POSTGRES_PASSWORD=1122
-    ports:
-      - "5433:5432"
-    volumes:
-      - pg_data_1:/var/lib/postgresql/data
-      - ./Cluster/postgres-1:/var/lib/postgresql/data
-      - ./Cluster/hba:/var/lib/postgresql/data
-    networks:
-      - Ho
-  postgres-2:
-    image: postgres:latest
-    container_name: postgres_replica_2
-    restart: always
-    environment:
-      - POSTGRES_DB=postgresdb
-      - POSTGRES_USER=biighunter
-      - POSTGRES_PASSWORD=1122
-    ports:
-      - "5434:5432"
-    volumes:
-      - pg_data_2:/var/lib/postgresql/data
-      - ./Cluster/postgres-2:/var/lib/postgresql/data
-      - ./Cluster/hba:/var/lib/postgresql/data
-    networks:
-      - Ho
 volumes:
-  pg_data_0:
-  pg_data_1:
-  pg_data_2:
+  pg_data:
 
 networks:
   Ho:
