@@ -16,7 +16,7 @@ services:
       - ./Cluster/postgres-0:/etc/postgresql
     networks:
       Ho:
-    command: ["-c", "config_file=/etc/postgresql/postgresql.conf"]
+    command: ["-c", "config_file=/etc/postgresql/postgresql.conf", "config_file=/etc/postgresql/pg_hba.conf", "config_file=/etc/postgresql/recovery.conf"]
 
   postgres-1:
     image: postgres:latest
