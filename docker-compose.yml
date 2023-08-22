@@ -16,6 +16,7 @@ services:
       - ./Cluster/postgres-0:/etc/postgresql
     networks:
       Ho:
+    command: ["-c", "config_file=/etc/postgresql/postgresql.conf"]
 
   postgres-1:
     image: postgres:latest
@@ -32,6 +33,7 @@ services:
       - ./Cluster/postgres-1:/etc/postgresql
     networks:
       Ho:
+    command: ["-c", "config_file=/etc/postgresql/postgresql.conf"]
 
   postgres-2:
     image: postgres:latest
@@ -48,6 +50,7 @@ services:
       - ./Cluster/postgres-2:/etc/postgresql
     networks:
       Ho:
+    command: ["-c", "config_file=/etc/postgresql/postgresql.conf"]
 
 volumes:
   pg_0_data:
