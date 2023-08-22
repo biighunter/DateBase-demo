@@ -16,7 +16,9 @@ services:
       - ./Cluster/postgres-0:/etc/postgresql
     networks:
       Ho:
-    command: ["-c", "config_file=/etc/postgresql/postgresql.conf"]
+    command: ["-c", "config_file=/etc/postgresql/postgresql.conf", "-c", "hba_file=/etc/postgresql/pg_hba.conf"]
+    entrypoint: >
+      /bin/bash -c "touch /var/lib/postgresql/data/standby.signal && /docker-entrypoint.sh postgres"
 
   postgres-1:
     image: postgres:latest
@@ -33,7 +35,7 @@ services:
       - ./Cluster/postgres-1:/etc/postgresql
     networks:
       Ho:
-    command: ["-c", "config_file=/etc/postgresql/postgresql.conf", "-c", "hba_file=/etc/postgresql/pg_hba.conf", "-c", "recovery_file=/etc/postgresql/recovery.conf"]
+    command: ["-c", "config_file=/etc/postgresql/postgresql.conf", "-c", "hba_file=/etc/postgresql/pg_hba.conf"]
     entrypoint: >
       /bin/bash -c "touch /var/lib/postgresql/data/standby.signal && /docker-entrypoint.sh postgres"
 
@@ -52,7 +54,9 @@ services:
       - ./Cluster/postgres-2:/etc/postgresql
     networks:
       Ho:
-    command: ["-c", "config_file=/etc/postgresql/postgresql.conf"]
+    command: ["-c", "config_file=/etc/postgresql/postgresql.conf", "-c", "hba_file=/etc/postgresql/pg_hba.conf"]
+    entrypoint: >
+      /bin/bash -c "touch /var/lib/postgresql/data/standby.signal && /docker-entrypoint.sh postgres"
 
 volumes:
   pg_0_data:
